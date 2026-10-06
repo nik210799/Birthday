@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Birthday System™</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#090b10;color:#edf1f5;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:16px 12px 40px}
+.app{max-width:680px;margin:auto}.terminal{background:#11151c;border:1px solid #2c3542;border-radius:18px;overflow:hidden;box-shadow:0 18px 60px #0008}
+.bar{height:38px;border-bottom:1px solid #2c3542;display:flex;align-items:center;gap:7px;padding:0 14px;color:#8792a2;font-size:11px}.dot{width:9px;height:9px;border-radius:50%;background:#3d4857}
+.content{padding:23px 18px 32px}h1{font-size:clamp(22px,6vw,32px);margin:0 0 23px}h1 span,h2,.green{color:#8cff98}h2{font-size:14px;margin:27px 0 11px}
+p{line-height:1.65;margin:9px 0}.question{border-top:1px dashed #2c3542;margin-top:24px;padding-top:18px}.hidden{display:none!important}
+button{min-height:54px;border:1px solid #3a4655;background:#171d26;color:#edf1f5;border-radius:11px;padding:12px 13px;font:inherit;font-size:13px;text-align:center;cursor:pointer;touch-action:manipulation}
+button.correct{border-color:#8cff98;color:#8cff98;box-shadow:0 0 0 1px #8cff9833}.feedback{min-height:25px;color:#8e9aaa;font-size:12px;margin-top:10px}
+.classic{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.arena-label{margin-top:14px;color:#8cff98;font-size:11px;letter-spacing:.08em}.runzone{position:relative;height:350px;margin-top:8px;border:1px dashed #354252;border-radius:14px;background:#0c1118;overflow:hidden}
+.runzone:after{content:"ESCAPE MODE: ACTIVE";position:absolute;right:10px;bottom:8px;color:#536071;font-size:10px;pointer-events:none}.runzone button{position:absolute;width:44%;max-width:175px;z-index:3}
+.anchor{left:50%;top:50%;transform:translate(-50%,-50%)}.runaway{transition:left .07s ease,top .07s ease}
+.card{margin-top:28px;border:1px solid #2c3542;border-radius:14px;padding:18px;background:#0d1117}.verdict{border-top:1px dashed #2c3542;margin-top:17px;padding-top:14px}.muted{color:#8e9aaa;font-style:italic}
+.continue{width:100%;margin-top:18px;border-color:#8cff98;color:#8cff98}.wish{border-left:3px solid #8cff98;background:#0b1016;padding:14px;margin-top:18px}
+.sincere{border-top:1px dashed #2c3542;margin-top:22px;padding-top:18px}.center{text-align:center}.cake{font-size:clamp(160px,50vw,270px);line-height:1;text-align:center;margin:32px 0 18px;filter:drop-shadow(0 12px 22px #000a)}
+
+.animalzone{position:relative;height:350px;margin-top:8px;border:1px dashed #354252;border-radius:14px;background:#0c1118;overflow:hidden}
+.animal-word{position:absolute;width:auto;min-width:72px;min-height:42px;padding:9px 12px;transform:rotate(var(--r,0deg));z-index:2;background:#171d26e8}
+.animal-word:nth-child(3n){transform:rotate(-8deg)}.animal-word:nth-child(4n){transform:rotate(7deg)}.animal-word:nth-child(5n){transform:rotate(-4deg)}
+.fox-target{z-index:4;border-color:#3a4655}
+@media(max-width:430px){.content{padding:20px 14px 28px}.runzone{height:380px}.animalzone{height:380px}.runzone button{width:46%;max-width:155px}.classic{gap:7px}}
+</style></head>
+<body><div class="app"><div class="terminal"><div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span style="margin-left:5px">birthday_system.exe</span></div>
+<main class="content">
+<h1>Birthday <span>System™</span></h1>
+<p>Because your birthday was exactly 5 days ago and my brain successfully ignored it</p>
+<p><strong>(haha, that went really well, good job Nikola)</strong></p>
+<p>So I’m wishing you a happy birthday now… but properly. But I want to be sure it’s really you, so you have to pass a short system check. Good luck :)</p>
+
+<section class="question" id="q1"><h2>QUESTION 01</h2>
+<p>How many kilometers is it as the crow flies from the Eiffel Tower to Prague Castle?</p>
+<div class="classic"><button id="a883">883</button><button id="a884">884</button><button id="a885">885</button></div><div class="feedback" id="f1"></div></section>
+
+<section class="question hidden" id="q2"><h2>QUESTION 02</h2><p>What is your favorite animal?</p>
+<div class="arena-label">GAME AREA // FIND IT</div>
+<div class="animalzone" id="z2"><button class="animal-word wrong-animal" id="animal0" style="left:5%;top:7%">Wolf</button><button class="animal-word wrong-animal" id="animal1" style="left:31%;top:5%">Tiger</button><button class="animal-word wrong-animal" id="animal2" style="left:58%;top:8%">Rabbit</button><button class="animal-word wrong-animal" id="animal3" style="left:15%;top:19%">Bear</button><button class="animal-word wrong-animal" id="animal4" style="left:47%;top:18%">Owl</button><button class="animal-word wrong-animal" id="animal5" style="left:66%;top:22%">Horse</button><button class="animal-word wrong-animal" id="animal6" style="left:4%;top:34%">Snake</button><button class="animal-word wrong-animal" id="animal7" style="left:29%;top:31%">Lion</button><button class="animal-word wrong-animal" id="animal8" style="left:55%;top:36%">Cat</button><button class="animal-word wrong-animal" id="animal9" style="left:70%;top:42%">Dog</button><button class="animal-word wrong-animal" id="animal10" style="left:12%;top:49%">Panda</button><button class="animal-word wrong-animal" id="animal11" style="left:38%;top:47%">Eagle</button><button class="animal-word wrong-animal" id="animal12" style="left:61%;top:52%">Shark</button><button class="animal-word wrong-animal" id="animal13" style="left:23%;top:61%">Mouse</button><button class="animal-word wrong-animal" id="animal14" style="left:50%;top:63%">Deer</button><button class="animal-word wrong-animal" id="animal15" style="left:68%;top:67%">Otter</button><button class="animal-word wrong-animal" id="animal16" style="left:7%;top:75%">Koala</button><button class="animal-word wrong-animal" id="animal17" style="left:34%;top:77%">Frog</button><button class="animal-word fox-target" id="fox" style="left:52%;top:72%">Fox</button><button class="animal-word wrong-animal" id="animal19" style="left:64%;top:84%">Penguin</button><button class="animal-word wrong-animal" id="animal20" style="left:17%;top:87%">Giraffe</button><button class="animal-word wrong-animal" id="animal21" style="left:42%;top:89%">Zebra</button><button class="animal-word wrong-animal" id="animal22" style="left:3%;top:58%">Monkey</button><button class="animal-word wrong-animal" id="animal23" style="left:45%;top:28%">Hedgehog</button><button class="animal-word wrong-animal" id="animal24" style="left:25%;top:42%">Dolphin</button><button class="animal-word wrong-animal" id="animal25" style="left:57%;top:58%">Raccoon</button></div><div class="feedback" id="f2"></div></section>
+
+<section class="question hidden" id="q3"><h2>QUESTION 03</h2><p>Who started flirting with whom first?</p>
+<div class="arena-label">GAME AREA // ESCAPE MODE</div>
+<div class="runzone" id="z3"><button class="anchor" id="me">Me</button><button class="runaway" id="bus" style="left:4%;top:9%">FlixBus driver</button><button class="runaway" id="you" style="left:52%;top:78%">You</button></div><div class="feedback" id="f3"></div></section>
+
+<section class="card hidden" id="analysis"><h2 style="margin-top:0">ANALYSIS COMPLETE</h2>
+<p>Charisma: <strong>DETECTED</strong></p><p>Humor: <strong>Suspiciously functional</strong></p><p>Annoying level: <strong>Surprisingly low</strong></p><p>Company: <strong>Would tolerate again</strong></p>
+<div class="verdict"><p><strong>FINAL VERDICT:</strong></p><p>Oh yeah, it must be you.</p></div>
+<button class="continue" id="continueBtn">CONTINUE →</button></section>
+
+<section class="card hidden" id="ending">
+<h2 style="margin-top:0">SYSTEM PROCESS COMPLETE.</h2>
+<p>All required data has been collected.</p><p>All answers have been processed.</p>
+<p><strong>…</strong></p><p>Wait.</p><p>There seems to be one thing missing.</p><p>Oh.</p><p>Right.</p><p>The actual birthday wish.</p>
+<div class="wish"><p><strong>Apparently, I overthought this. AGAIN.</strong></p><p><strong>HAPPY BIRTHDAY, ARNAUD. 🎂</strong></p><div class="cake">🎂</div></div>
+<div class="sincere"><p><strong>And one last thing.</strong></p><p>I think I’m finally starting to understand just how demanding your work really is.</p><p>I probably didn’t fully get it before. I looked into it a bit and I have a much better idea now. It’s a completely different life from mine.</p><p><strong>I respect it.</strong></p></div>
+
+<p class="center"><strong>BIRTHDAY SYSTEM: PASSED ✓</strong></p>
+</section>
+</main></div></div>
+<script>
+const $=id=>document.getElementById(id);
+function reveal(id){const e=$(id);e.classList.remove('hidden');setTimeout(()=>e.scrollIntoView({behavior:'smooth',block:'start'}),80)}
+$('a883').onclick=()=>{$('f1').textContent='Not quite. The system demands unnecessary precision.'};
+$('a885').onclick=()=>{$('f1').textContent='Close. Suspiciously close.'};
+$('a884').onclick=()=>{$('a884').classList.add('correct');$('f1').textContent='✓ Correct. Suspiciously precise performance.';reveal('q2')};
+function jump(btn,zone,msgEl,msg){
+ const z=zone.getBoundingClientRect(),b=btn.getBoundingClientRect(),pad=12;
+ const maxX=Math.max(pad,z.width-b.width-pad),maxY=Math.max(pad,z.height-b.height-pad);
+ btn.style.left=(pad+Math.random()*Math.max(0,maxX-pad))+'px';
+ btn.style.top=(pad+Math.random()*Math.max(0,maxY-pad))+'px';
+ msgEl.textContent=msg;
+}
+function dodger(btn,zone,msgEl,msg){
+ let lock=false; const go=e=>{if(e)e.preventDefault();if(lock)return;lock=true;jump(btn,zone,msgEl,msg);setTimeout(()=>lock=false,80)};
+ ['pointerenter','pointerdown','touchstart'].forEach(ev=>btn.addEventListener(ev,go,{passive:false}));
+}
+document.querySelectorAll('#z2 .wrong-animal').forEach(btn=>{
+ btn.onclick=()=>{$('f2').textContent='Nope. Keep looking.'};
+});
+$('fox').onclick=()=>{$('fox').classList.add('correct');$('f2').textContent='✓ Correct. Found it.';reveal('q3')};
+dodger($('bus'),$('z3'),$('f3'),'ERROR: FlixBus driver unavailable.');
+dodger($('you'),$('z3'),$('f3'),'ERROR: You are not accepting responsibility.');
+$('me').onclick=()=>{$('me').classList.add('correct');$('f3').textContent='✓ Correct. That was suspiciously confident.';setTimeout(()=>reveal('analysis'),300)};
+$('continueBtn').onclick=()=>reveal('ending');
+</script></body></html>
